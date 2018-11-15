@@ -66,10 +66,14 @@ func readFile(name string) {
 			continue
 		}
 
+		methodNameWithLineNumber := strings.Split(strings.TrimRight(methodInfo, ","), ":")
+		methodName := methodNameWithLineNumber[0]
+		lineNumber := methodNameWithLineNumber[1]
+
 		className := split[1]
 		qualified := split[2]
 
-		stackTrace := "at " + strings.Trim(qualified, "()") + "." + className + "(" + strings.TrimRight(methodInfo, ",") + ")"
+		stackTrace := "at " + strings.Trim(qualified, "()") + "." + methodName + "(" + className + ":" + lineNumber + ")"
 
 		create.WriteString(stackTrace + "\n")
 	}
