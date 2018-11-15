@@ -5,13 +5,20 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"os/exec"
+	"path"
 	"strings"
 )
 
 func main() {
-
+	initEnv()
 	readFile("stackTrace.txt")
+}
 
+func initEnv() {
+	executePath, _ := exec.LookPath(os.Args[0])
+	dir, _ := path.Split(executePath)
+	os.Chdir(dir)
 }
 
 func readFile(name string) {
