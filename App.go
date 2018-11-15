@@ -73,7 +73,8 @@ func readFile(name string) {
 		className := split[1]
 		qualified := split[2]
 
-		stackTrace := "at " + strings.Trim(qualified, "()") + "." + methodName + "(" + className + ":" + lineNumber + ")"
+		stackTrace := "at " + strings.Trim(qualified, "()") + ".java" + "." + className + "." + methodName +
+			"(" + className + ":" + lineNumber + ")"
 
 		create.WriteString(stackTrace + "\n")
 	}
